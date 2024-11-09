@@ -11,7 +11,7 @@ interface FormSubmitProps {
   size?: "default" | "sm" | "lg" | "icon" | null | undefined;
   type?: "submit" | "button";
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  // onSubmit: (event: React.FormEvent<HTMLButtonElement>) => void;
+  onSubmit?: (event: React.FormEvent<HTMLButtonElement>) => void;
   form?: string;
   name?: string;
 }
@@ -24,7 +24,7 @@ export const FormSubmit = ({
   size = "sm",
   type = "submit",
   onClick,
-  // onSubmit,
+  onSubmit,
   form,
   name,
 }: FormSubmitProps) => {
@@ -37,7 +37,7 @@ export const FormSubmit = ({
       size={size}
       type={type}
       onClick={onClick}
-      // onSubmit={onSubmit}
+      onSubmit={onSubmit}
       form={form}
       name={name}
     >
