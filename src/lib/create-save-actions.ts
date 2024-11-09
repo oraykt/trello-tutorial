@@ -31,6 +31,7 @@ export const createSafeAction = <TInput, TOutput>(
   return async (formData: FormData): Promise<ActionState<TInput, TOutput>> => {
     const validatedFields = schema.safeParse({
       title: formData.get("title"),
+      image: formData.get("image"),
     });
     if (!validatedFields.success) {
       return {

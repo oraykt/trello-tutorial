@@ -10,14 +10,31 @@ import { CreateBoard } from "./schema";
 const callback = (redirectionUrl: string) => revalidatePath(redirectionUrl)
 
 const handler = async (data: InputType): Promise<ReturnType> => {
-  const { userId } = auth();
-  if (!userId) return { error: "Unauthorized" }
+  const { userId, orgId } = auth();
+  if (!userId || !orgId) return { error: "Unauthorized" }
 
   let board
+  const { title, image } = data
+  const [
+    imageId,
+    imageThumbUrl,
+    imageFullUrl,
+    imageLinkHTML,
+    imageUserName,
+  ] = image.split("|")
+  if (!imageId || !imageThumbUrl || !imageFullUrl || !imageLinkHTML || !imageUserName) {
+    return { error: "Missing fields. Failed to create board." }
+  }
   try {
     board = await db.board.create({
       data: {
-        title: data.title,
+        title,
+        orgId,
+        imageId,
+        imageThumbUrl,
+        imageFullUrl,
+        imageLinkHTML,
+        imageUserName,
       },
     });
 
