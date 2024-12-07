@@ -16,8 +16,8 @@ interface FormInputProps {
   value?: string;
   errors?: Record<string, string[] | undefined>;
   className?: string;
-  defaultvalue?: string;
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  defaultValue?: string;
+  onBlur?: () => void;
   // onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -33,7 +33,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       value,
       errors,
       className,
-      defaultvalue,
+      defaultValue,
       onBlur,
       // onChange,
     },
@@ -62,7 +62,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
               className
             )}
             aria-describedby={`${id}-error`}
-            defaultValue={defaultvalue}
+            defaultValue={defaultValue}
             onBlur={onBlur}
             // onChange={onChange}
             ref={ref}
