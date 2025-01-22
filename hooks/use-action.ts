@@ -22,7 +22,7 @@ export const useAction = <TInput, TOutput>(
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const executeAction = useCallback(
-    async (input: FormData) => {
+    async (input: any) => {
       setIsLoading(true);
       try {
         const result = await actions(input);

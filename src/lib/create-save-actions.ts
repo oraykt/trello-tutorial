@@ -28,11 +28,8 @@ export const createSafeAction = <TInput, TOutput>(
   handler: (validatedData: TInput) => Promise<ActionState<TInput, TOutput>>
 
 ) => {
-  return async (formData: FormData): Promise<ActionState<TInput, TOutput>> => {
-    const validatedFields = schema.safeParse({
-      title: formData.get("title"),
-      image: formData.get("image"),
-    });
+  return async (data: TInput): Promise<ActionState<TInput, TOutput>> => {
+    const validatedFields = schema.safeParse(data);
     if (!validatedFields.success) {
       return {
         fieldErrors: validatedFields.error.flatten().fieldErrors as FieldErrors<TInput>,
