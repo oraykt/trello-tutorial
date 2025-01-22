@@ -47,7 +47,9 @@ export const FormPopover = ({
   })
 
   const onSubmit = (formData: FormData) => {
-    executeAction(formData)
+    const title = formData.get("title") as string;
+    const image = formData.get("image") as string;
+    executeAction({ title, image })
   }
   return (
     <Popover>
